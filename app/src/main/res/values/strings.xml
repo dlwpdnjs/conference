@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">Login Sample</string>
-    <string name="register">REGISTER</string>
-    <string name="login_email_hint">Email</string>
+    <string name="app_name">Easy Conference</string>
+    <string name="register">회원가입</string>
+    <string name="login_id_hint">ID</string>
     <string name="login_password_hint">Password</string>
-    <string name="signup_login_hint">Already have an account? Sign In</string>
-    <string name="login_signup_hint">Don\'t have an account? Sign Up</string>
+    <string name="signup_login_hint">로그인</string>
+    <string name="login_signup_hint">회원가입</string>
 
 </resources>
