@@ -51,15 +51,16 @@
             style="@style/loginButton"
             android:text="로그인"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/loginViewsMargin"/>
+            android:layout_marginTop="@dimen/loginViewsMargin"
+            android:onClick="login"/>
 
         <TextView
             style="@style/parent"
             android:textAlignment="center"
+            android:onClick="mvRegist"
             android:textStyle="bold"
             android:textColor="@color/primaryTextColor"
             android:text="@string/login_signup_hint"
-            android:onClick="viewRegisterClicked"
             android:layout_marginTop="@dimen/loginViewsMargin"/>
 
 

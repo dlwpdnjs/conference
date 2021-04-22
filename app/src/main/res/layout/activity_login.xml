@@ -4,7 +4,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:orientation="vertical"
 style="@style/loginParent"
-tools:context="com.appsnipp.loginsamples.LoginActivity">
+tools:context="com.appsnipp.EasyConference.LoginActivity">
 <ScrollView
     style="@style/parent">
 
@@ -48,10 +48,19 @@ tools:context="com.appsnipp.loginsamples.LoginActivity">
                 android:text="Easy Conference"
                 android:layout_marginTop="40dp"/>
 
-            <include layout="@layout/layout_login" />
+            <!--로그인 레이아웃-->
+            <include
+                layout="@layout/layout_login"
+                android:id="@+id/loginView"
+                android:visibility="visible"/>
+
+            <!--회원가입 레이아웃-->
+            <include
+                layout="@layout/layout_register"
+                android:id="@+id/registView"
+                android:visibility="gone"/>
 
         </LinearLayout>
-
 <!--        <ImageView-->
 <!--            android:layout_width="wrap_content"-->
 <!--            android:layout_height="wrap_content"-->
@@ -63,7 +72,6 @@ tools:context="com.appsnipp.loginsamples.LoginActivity">
     </RelativeLayout>
 
 </ScrollView>
-
 </RelativeLayout>
 
 

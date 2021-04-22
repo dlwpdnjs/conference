@@ -27,7 +27,8 @@
                 style="@style/modifiedEditText"
                 android:inputType="text"
                 android:maxLines="1"
-                android:hint="Name"/>
+                android:hint="Name"
+                android:id="@+id/joinName"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -37,7 +38,8 @@
                 style="@style/modifiedEditText"
                 android:inputType="text"
                 android:maxLines="1"
-                android:hint="Phone Number"/>
+                android:hint="E-Mail"
+                android:id="@+id/joinEmail"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -47,7 +49,8 @@
                 style="@style/modifiedEditText"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
-                android:hint="@string/login_id_hint"/>
+                android:hint="@string/login_id_hint"
+                android:id="@+id/joinId"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -57,13 +60,16 @@
                 style="@style/modifiedEditText"
                 android:hint="@string/login_password_hint"
                 android:maxLines="1"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:id="@+id/joinPw"/>
         </android.support.design.widget.TextInputLayout>
 
         <Button
             style="@style/loginButton"
             android:layout_gravity="center"
-            android:text="회원가입" />
+            android:text="회원가입"
+            android:onClick="mvLogin"
+            android:id="@+id/joinButton"/>
 
     </LinearLayout>
 </android.support.v7.widget.CardView>
