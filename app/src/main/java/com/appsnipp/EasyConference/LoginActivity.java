@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -60,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
 
     //회원가입 이벤트
     public void mvLogin(View v) throws Exception{
+
         //회원가입 값
         final EditText join_email = findViewById( R.id.joinEmail );
         final EditText join_password = findViewById( R.id.joinPw );
@@ -72,25 +74,40 @@ public class LoginActivity extends AppCompatActivity {
         String UserId = join_id.getText().toString();
 
         //유효성 검사
-        if (UserEmail.equals("") || UserPwd.equals("") || UserName.equals("")) {
+        if (UserEmail.equals("") || UserPwd.equals("") || UserName.equals("") || UserId.equals("")) {
             AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-            dialog = builder.setMessage("모두 입력해주세요.").setNegativeButton("확인", null).create();
+            dialog = builder.setMessage("모든 값을 입력해주세요.").setNegativeButton("확인", null).create();
             dialog.show();
 
             return;
         }
         else {
-
             try {
+                //Db에 Users 데이터 Insert
                 ContentValues values = new ContentValues();
-                values.put("name","HelloAlpaca");
-                values.put("email","HelloAlpaca");
-                values.put("id","HelloAlpaca");
-                values.put("password","HelloAlpaca");
+                values.put("name", UserName);
+                values.put("email", UserEmail);
+                values.put("id", UserPwd);
+                values.put("password", UserPwd);
                 long result = sqliteDatabase.insert("TB_USERS",null,values);
 
-                findViewById(R.id.registView).setVisibility(View.GONE);
-                findViewById(R.id.loginView).setVisibility(View.VISIBLE);
+                //성공 시 TB_USERS 조회
+                if(result > 0) {
+                    String getUserInfo = "select * from TB_USERS";
+                    Cursor cu = sqliteDatabase.rawQuery(getUserInfo,null);
+                    while(cu.moveToNext()) {
+                        System.out.println("userId :" +cu.getString(cu.getColumnIndex("id")));
+                    }
+
+                    //회원가입 성공 팝업
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                    dialog = builder.setMessage("회원가입이 완료되었습니다.").setNegativeButton("확인", null).create();
+                    dialog.show();
+
+                    //로그인화면으로 이동
+                    findViewById(R.id.registView).setVisibility(View.GONE);
+                    findViewById(R.id.loginView).setVisibility(View.VISIBLE);
+                }
 
             }catch (Exception e) {
                 e.printStackTrace();
