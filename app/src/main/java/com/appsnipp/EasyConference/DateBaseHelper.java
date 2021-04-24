@@ -28,7 +28,13 @@ public class DateBaseHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
+        String userSql = "DROP TABLE if exists TB_USERS";
+        sqLiteDatabase.execSQL(userSql);
+        onCreate(sqLiteDatabase);
 
+        String conferenceSql = "DROP TABLE if exists TB_CONFERENCE";
+        sqLiteDatabase.execSQL(conferenceSql);
+        onCreate(sqLiteDatabase);
     }
 }

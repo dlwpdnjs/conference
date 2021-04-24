@@ -27,7 +27,7 @@
             style="@style/parent"
             android:layout_marginTop="@dimen/loginViewsMargin">
             <EditText
-                android:id="@+id/editTextEmail"
+                android:id="@+id/editTextId"
                 style="@style/modifiedEditText"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
