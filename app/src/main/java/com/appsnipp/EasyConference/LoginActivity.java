@@ -86,14 +86,10 @@ public class LoginActivity extends AppCompatActivity {
             cu = sqliteDatabase.rawQuery(getUserInfo,null);
 
             int count = cu.getCount();
-            System.out.println("countcountcountcountcountcount" + count);
             if (count > 0) {
                 cu.moveToNext();
                 CId = cu.getString(0);
                 CPassword = cu.getString(1);
-
-                System.out.println("CIdCIdCIdCIdCId" + CId);
-                System.out.println("CPasswordCPassword" + CPassword);
 
                 if(Id.equals(CId) && Password.equals(CPassword)){
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);

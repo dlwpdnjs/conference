@@ -21,7 +21,13 @@ public class DateBaseHelper extends SQLiteOpenHelper {
 
         String conferenceSql = "CREATE TABLE if not exists TB_CONFERENCE ("
                 + "_id integer primary key autoincrement,"
-                + "Cnf_id text);";
+                + "Cnf_id text,"
+                + "Cnf_content text,"
+                + "Cnf_subject text,"
+                + "Cnf_regdate text,"
+                + "Cnf_reguser text,"
+                + "Cnf_attendants text,"
+                + "Cnf_title text);";
 
         sqLiteDatabase.execSQL(userSql);
         sqLiteDatabase.execSQL(conferenceSql);
