@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private DateBaseHelper dbHelper;
     private SQLiteDatabase sqliteDatabase;
     private Cursor cu;
+    private ListView conferenceListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //리스트뷰 선언
-        ListView conferenceListView = (ListView) findViewById(R.id.conferenceListView);
+        conferenceListView = (ListView) findViewById(R.id.conferenceListView);
 
         //SQLite 메소드 호출
         DateBaseHelper dbHelper = new DateBaseHelper(MainActivity.this, "Conference.db", null, 1);
@@ -43,6 +44,43 @@ public class MainActivity extends AppCompatActivity {
 
         TextView TopCurrentDate = (TextView) findViewById(R.id.TopCurrentDate);
         TopCurrentDate.setText(currentDate);
+
+        //리스트 뷰
+        ListView lvList = (ListView)findViewById(R.id.conferenceListView);
+
+        //리스트 출력
+        selectListView();
+
+    }
+
+    //리스트 출력
+    public void selectListView() {
+        //Dbhelper의 읽기모드 객체를 가져와 SQLiteDatabase에 담아 사용준비
+        DateBaseHelper helper = new DateBaseHelper(MainActivity.this, "Conference.db", null, 1);
+        sqliteDatabase = helper.getReadableDatabase();
+
+        //리스트뷰에 목록 채워주는 도구인 adapter준비
+        ListViewAdapter adapter = new ListViewAdapter();
+
+        //Cursor라는 그릇에 목록을 담아주기
+        cu = sqliteDatabase.rawQuery("SELECT Cnf_regdate, Cnf_title FROM TB_CONFERENCE",null);
+
+        int count = cu.getCount();
+        if (count > 0) {
+
+            //목록의 개수만큼 순회하여 adapter에 있는 list배열에 add
+            while(cu.moveToNext()){
+                System.out.println("조회됨");
+                //num 행은 가장 첫번째에 있으니 0번이 되고, name은 1번
+                adapter.addItemToList(cu.getString(0),cu.getString(1));
+            }
+        }
+        else{
+            System.out.println("조회안됨");
+            adapter.addItemToList("","조회된 리스트가 없습니다.");
+        }
+
+        conferenceListView.setAdapter(adapter);
     }
 
     //뒤로가기

@@ -12,7 +12,7 @@ public class ListViewAdapterData {
 
 
     public void setCnf_id(int Cnf_id){this.Cnf_id = Cnf_id;}
-    public void setCnf_content(String Cnf_content){this.Cnf_content = Cnf_content}
+    public void setCnf_content(String Cnf_content){this.Cnf_content = Cnf_content;}
     public void setCnf_subject(String Cnf_subject){this.Cnf_subject = Cnf_subject;}
     public void setCnf_regdate(String Cnf_regdate){this.Cnf_regdate = Cnf_regdate;}
     public void setCnf_reguser(String Cnf_reguser){this.Cnf_reguser = Cnf_reguser;}
