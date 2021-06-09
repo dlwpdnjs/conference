@@ -1,9 +1,12 @@
 package com.appsnipp.EasyConference;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -26,6 +29,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), WriteActivity.class);
+                startActivity(intent);
+            }
+        };
+
+        Button btnWrite = (Button) findViewById(R.id.addNew);
+        btnWrite.setOnClickListener(listener);
 
         //리스트뷰 선언
         conferenceListView = (ListView) findViewById(R.id.conferenceListView);
@@ -50,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
         //리스트 출력
         selectListView();
-
     }
 
     //리스트 출력
@@ -80,9 +93,9 @@ public class MainActivity extends AppCompatActivity {
             adapter.addItemToList("","조회된 리스트가 없습니다.");
         }
 
+        //리스트 표출
         conferenceListView.setAdapter(adapter);
     }
-
     //뒤로가기
     public void onBackPressed() {
         backKeyClickHandler.onBackPressed();

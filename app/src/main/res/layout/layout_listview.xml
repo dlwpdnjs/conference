@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:text="2021-05-20"/>
 
         <TextView
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/Cnf_regdate"
             android:layout_marginLeft="20dp"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:text="List"/>
     </RelativeLayout>
 
