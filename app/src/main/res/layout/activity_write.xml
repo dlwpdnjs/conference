@@ -7,19 +7,72 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#50BCDF"
+        android:layout_height="70dp"
+        android:background="#00a5ff"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/backmenu"
-            android:onClick="backPage"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+        <TextView
+            android:id="@+id/appTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/back"
-            android:textColor="#851B1B" />
+            android:gravity="center"
+            android:text="Easy Conference"
+            android:textColor="#FFFFFF"
+            android:textSize="25dp"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+        <TextView
+            android:id="@+id/backmenu"
+            android:onClick="backPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+            android:layout_marginRight="10dp"
+            android:text="×"
+            android:textSize="40dp"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/title"
+            android:layout_width="380dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_input_background"
+            android:drawableLeft="@drawable/drawable_left_title"
+            android:drawablePadding="10dp"
+            android:gravity="center|left"
+            android:hint="주제"
+            android:paddingLeft="4dp"
+            android:textColorHint="#656060"
+            android:textSize="15dp" />
+
+        <EditText
+            android:id="@+id/regdate"
+            android:layout_width="380dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_input_background"
+            android:drawableLeft="@drawable/drawable_left_date"
+            android:drawablePadding="5dp"
+            android:gravity="center|left"
+            android:text="2021:01:01"
+            android:textSize="15dp"
+            android:textColor="#656060"/>
+
+
+
     </LinearLayout>
 
 </LinearLayout>
