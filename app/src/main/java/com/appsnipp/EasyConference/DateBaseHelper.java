@@ -27,7 +27,8 @@ public class DateBaseHelper extends SQLiteOpenHelper {
                 + "Cnf_regdate text,"
                 + "Cnf_reguser text,"
                 + "Cnf_attendants text,"
-                + "Cnf_title text);";
+                + "Cnf_title text,"
+                + "Cnf_location)";
 
         sqLiteDatabase.execSQL(userSql);
         sqLiteDatabase.execSQL(conferenceSql);

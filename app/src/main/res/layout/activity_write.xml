@@ -25,7 +25,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1" />
-        <TextView
+        <!--<TextView
             android:id="@+id/backmenu"
             android:onClick="backPage"
             android:layout_width="wrap_content"
@@ -34,12 +34,12 @@
             android:layout_marginRight="10dp"
             android:text="×"
             android:textSize="40dp"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF" />-->
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <EditText
@@ -47,7 +47,7 @@
             android:layout_width="380dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/shape_input_background"
             android:drawableLeft="@drawable/drawable_left_title"
             android:drawablePadding="10dp"
@@ -67,10 +67,78 @@
             android:drawableLeft="@drawable/drawable_left_date"
             android:drawablePadding="5dp"
             android:gravity="center|left"
+            android:onClick="mOnClick_DatePick"
             android:text="2021:01:01"
             android:textSize="15dp"
             android:textColor="#656060"/>
 
+        <EditText
+            android:id="@+id/peoples"
+            android:layout_width="380dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_input_background"
+            android:drawableLeft="@drawable/drawable_left_man"
+            android:drawablePadding="10dp"
+            android:gravity="center|left"
+            android:hint="참석자"
+            android:paddingLeft="4dp"
+            android:textColorHint="#656060"
+            android:textSize="15dp" />
+
+        <EditText
+            android:id="@+id/location"
+            android:layout_width="380dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_input_background"
+            android:drawableLeft="@drawable/drawable_left_location"
+            android:drawablePadding="10dp"
+            android:gravity="center|left"
+            android:hint="위치(장소)"
+            android:paddingLeft="4dp"
+            android:textColorHint="#656060"
+            android:textSize="15dp" />
+
+        <EditText
+            android:id="@+id/content"
+            android:layout_width="380dp"
+            android:inputType="textMultiLine"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_input_background"
+            android:drawableStart="@drawable/drawable_left_content"
+            android:gravity="center|left"
+            android:drawablePadding="10dp"
+            android:hint="내용"
+            android:paddingLeft="4dp"
+            android:lines="10"
+            android:minLines="5"
+            android:maxLines="10"
+            android:scrollbars="vertical"
+            android:minWidth="10.0dip"
+            android:maxWidth="5.0dip"
+            android:textColorHint="#656060"
+            android:textSize="15dp" />
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="100dp">
+
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/drawable_center_save"
+            android:onClick="saveConference"
+            android:text="저장">
+        </Button>
+
+    </RelativeLayout>
 
 </LinearLayout>
