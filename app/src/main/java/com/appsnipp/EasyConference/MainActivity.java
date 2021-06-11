@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -76,24 +77,20 @@ public class MainActivity extends AppCompatActivity {
         ListViewAdapter adapter = new ListViewAdapter();
 
         //Cursor라는 그릇에 목록을 담아주기
-        cu = sqliteDatabase.rawQuery("SELECT Cnf_regdate, Cnf_title FROM TB_CONFERENCE",null);
+        cu = sqliteDatabase.rawQuery("SELECT Cnf_title, Cnf_regdate, Cnf_attendants FROM TB_CONFERENCE",null);
 
         int count = cu.getCount();
         if (count > 0) {
-
             //목록의 개수만큼 순회하여 adapter에 있는 list배열에 add
             while(cu.moveToNext()){
-                System.out.println("조회됨");
                 //num 행은 가장 첫번째에 있으니 0번이 되고, name은 1번
-                adapter.addItemToList(cu.getString(0),cu.getString(1));
+                adapter.addItemToList(cu.getString(0),cu.getString(1),cu.getString(2));
             }
         }
         else{
-            System.out.println("조회안됨");
-            adapter.addItemToList("","조회된 리스트가 없습니다.");
+            adapter.addItemToList("","조회된 리스트가 없습니다.","");
         }
-
-        //리스트 표출
+        //리스트 표출\
         conferenceListView.setAdapter(adapter);
     }
     //뒤로가기

@@ -1,6 +1,7 @@
 package com.appsnipp.EasyConference;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,23 +44,26 @@ public class ListViewAdapter extends BaseAdapter {
         //이제 아이템에 존재하는 텍스트뷰 객체들을 view객체에서 찾아 가져온다
         TextView tvNum = (TextView)view.findViewById(R.id.Cnf_regdate);
         TextView tvName = (TextView)view.findViewById(R.id.Cnf_title);
+        TextView tvpeople = (TextView)view.findViewById(R.id.Cnf_attendants);
 
         //현재 포지션에 해당하는 아이템에 글자를 적용하기 위해 list배열에서 객체를 가져온다.
         ListViewAdapterData listdata = list.get(i);
 
         //가져온 객체안에 있는 글자들을 각 뷰에 적용한다
-        tvNum.setText(Integer.toString(listdata.getCnf_id()));
+        tvNum.setText(listdata.getCnf_regdate());
         tvName.setText(listdata.getCnf_title());
+        tvpeople.setText(listdata.getCnf_attendants());
 
         return view;
     }
 
-    //ArrayList로 선언된 list 변수에 목록을 채워주기 위함 다른방시으로 구현해도 됨
-    public void addItemToList(String date, String title){
+    //ArrayList로 선언된 list 변수에 목록을 채워주기 위함 다른방식으로 구현해도 됨
+    public void addItemToList(String title, String date, String attendants){
         ListViewAdapterData listdata = new ListViewAdapterData();
 
-        listdata.setCnf_regdate(date);
         listdata.setCnf_title(title);
+        listdata.setCnf_regdate(date);
+        listdata.setCnf_attendants(attendants);
 
         //값들의 조립이 완성된 listdata객체 한개를 list배열에 추가
         list.add(listdata);

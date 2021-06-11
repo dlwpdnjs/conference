@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 
 public class DateBaseHelper extends SQLiteOpenHelper {
     public DateBaseHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+        super(context, name, factory, 2);
     }
 
     @Override
@@ -21,14 +21,13 @@ public class DateBaseHelper extends SQLiteOpenHelper {
 
         String conferenceSql = "CREATE TABLE if not exists TB_CONFERENCE ("
                 + "_id integer primary key autoincrement,"
-                + "Cnf_id text,"
                 + "Cnf_content text,"
                 + "Cnf_subject text,"
                 + "Cnf_regdate text,"
                 + "Cnf_reguser text,"
                 + "Cnf_attendants text,"
                 + "Cnf_title text,"
-                + "Cnf_location)";
+                + "Cnf_location text)";
 
         sqLiteDatabase.execSQL(userSql);
         sqLiteDatabase.execSQL(conferenceSql);

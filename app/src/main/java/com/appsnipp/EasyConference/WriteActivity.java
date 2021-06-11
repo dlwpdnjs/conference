@@ -1,14 +1,19 @@
 package com.appsnipp.EasyConference;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -21,6 +26,7 @@ public class WriteActivity extends AppCompatActivity {
     private SQLiteDatabase sqliteDatabase;
     private static final String TAG = "WriteActivity";
     private BackKeyClickHandler backKeyClickHandler;
+    private Cursor cu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,4 +91,61 @@ public class WriteActivity extends AppCompatActivity {
     /*public void onBackPressed() {
         backKeyClickHandler.onBackPressed();
     }*/
+
+    //회의록 저장
+    public void saveConference(View v) {
+        AlertDialog dialog;
+
+        EditText edititle = findViewById(R.id.title);
+        EditText ediregdate = findViewById(R.id.regdate);
+        EditText edipeoples = findViewById(R.id.peoples);
+        EditText edilocation = findViewById(R.id.location);
+        EditText edicontent = findViewById(R.id.content);
+
+        try {
+            String title = edititle.getText().toString();
+            String regdate = ediregdate.getText().toString();
+            String peoples = edipeoples.getText().toString();
+            String location = edilocation.getText().toString();
+            String content = edicontent.getText().toString();
+
+            //유효성 검사
+            if(title.equals("")) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(WriteActivity.this);
+                dialog = builder.setMessage("주제를 입력해주세요.").setNegativeButton("확인", null).create();
+                dialog.show();
+
+                return;
+            }
+
+            String getUserInfo = "select name from tb_users";
+            cu = sqliteDatabase.rawQuery(getUserInfo,null);
+
+            cu.moveToNext();
+            String reguser = cu.getString(0);
+
+            ContentValues values = new ContentValues();
+            values.put("Cnf_title", title);
+            values.put("Cnf_regdate", regdate);
+            values.put("Cnf_attendants", peoples);
+            values.put("Cnf_location", location);
+            values.put("Cnf_content", content);
+            values.put("Cnf_reguser", reguser);
+            long result = sqliteDatabase.insert("TB_CONFERENCE",null, values);
+
+            if(result > 0) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(WriteActivity.this);
+                dialog = builder.setMessage("저장이 완료되었습니다.").setNegativeButton("확인", null).create();
+                dialog.show();
+
+                //메인화면으로 이동
+                backPage(v);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            Log.e(TAG, "저장중 에러가 발생하였습니다.");
+            Log.e(TAG, "error", e);
+        }
+    }
 }
