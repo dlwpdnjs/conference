@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#00a5ff"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/appTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="Easy Conference"
+            android:textColor="#FFFFFF"
+            android:textSize="25dp"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/title"
+            android:layout_width="380dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/shape_input_background"
+            android:drawableLeft="@drawable/drawable_left_title"
+            android:drawablePadding="10dp"
+            android:gravity="center|left"
+            android:hint="주제"
+            android:paddingLeft="4dp"
+            android:textColorHint="#656060"
+            android:textSize="15dp" />
+
+        <EditText
+            android:id="@+id/regdate"
+            android:layout_width="380dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_input_background"
+            android:drawableLeft="@drawable/drawable_left_date"
+            android:drawablePadding="5dp"
+            android:gravity="center|left"
+            android:onClick="mOnClick_DatePick"
+            android:text="2021:01:01"
+            android:textSize="15dp"
+            android:textColor="#656060"/>
+
+        <EditText
+            android:id="@+id/peoples"
+            android:layout_width="380dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_input_background"
+            android:drawableLeft="@drawable/drawable_left_man"
+            android:drawablePadding="10dp"
+            android:gravity="center|left"
+            android:hint="참석자"
+            android:paddingLeft="4dp"
+            android:textColorHint="#656060"
+            android:textSize="15dp" />
+
+        <EditText
+            android:id="@+id/location"
+            android:layout_width="380dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_input_background"
+            android:drawableLeft="@drawable/drawable_left_location"
+            android:drawablePadding="10dp"
+            android:gravity="center|left"
+            android:hint="위치(장소)"
+            android:paddingLeft="4dp"
+            android:textColorHint="#656060"
+            android:textSize="15dp" />
+
+        <EditText
+            android:id="@+id/content"
+            android:layout_width="380dp"
+            android:inputType="textMultiLine"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_input_background"
+            android:drawableStart="@drawable/drawable_left_content"
+            android:gravity="center|left"
+            android:drawablePadding="10dp"
+            android:hint="내용"
+            android:paddingLeft="4dp"
+            android:lines="10"
+            android:minLines="5"
+            android:maxLines="10"
+            android:scrollbars="vertical"
+            android:minWidth="10.0dip"
+            android:maxWidth="5.0dip"
+            android:textColorHint="#656060"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="100dp">
+
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/drawable_center_save"
+            android:onClick="UptConference"
+            android:id="@+id/saveBtn"
+            android:layout_marginLeft="-10dp"
+            android:text="저장">
+        </Button>
+
+        <Button
+            android:id="@+id/delBtn"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/drawable_center_save"
+            android:onClick="delConference"
+            android:layout_marginLeft="160dp"
+            android:text="삭제"></Button>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -10,9 +10,11 @@ public class ListViewAdapterData {
     private String Cnf_attendants;
     private String Cnf_title;
     private String Cnf_location;
+    private int _id;
 
 
     public void setCnf_id(int Cnf_id){this.Cnf_id = Cnf_id;}
+    public void set_id(int _id){this._id = _id;}
     public void setCnf_content(String Cnf_content){this.Cnf_content = Cnf_content;}
     public void setCnf_subject(String Cnf_subject){this.Cnf_subject = Cnf_subject;}
     public void setCnf_regdate(String Cnf_regdate){this.Cnf_regdate = Cnf_regdate;}
@@ -22,6 +24,7 @@ public class ListViewAdapterData {
     public void setCnf_title(String Cnf_title){this.Cnf_title = Cnf_title;}
 
     public int getCnf_id(){return this.Cnf_id;}
+    public int get_id(){return this._id;}
     public String getCnf_content(){return this.Cnf_content;}
     public String getCnf_subject(){return this.Cnf_subject;}
     public String getCnf_regdate(){return this.Cnf_regdate;}

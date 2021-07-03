@@ -87,11 +87,6 @@ public class WriteActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //뒤로가기
-    /*public void onBackPressed() {
-        backKeyClickHandler.onBackPressed();
-    }*/
-
     //회의록 저장
     public void saveConference(View v) {
         AlertDialog dialog;

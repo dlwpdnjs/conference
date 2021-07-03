@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -65,6 +66,46 @@ public class MainActivity extends AppCompatActivity {
 
         //리스트 출력
         selectListView();
+
+        //리스트 뷰 선택 이벤트
+        conferenceListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            //수정화면으로 이동
+            @Override
+            public void onItemClick(AdapterView parent, View v, int position, long id) {
+
+                int idx = 0;
+                String Cnf_content = null;
+                String Cnf_regdate = null;
+                String Cnf_attendants = null;
+                String Cnf_location = null;
+                String Cnf_title = null;
+
+                cu = sqliteDatabase.rawQuery("SELECT * FROM TB_CONFERENCE",null);
+
+                if (cu.getCount() > 0) {
+                    while (cu.moveToNext()) {
+                        idx = cu.getInt(0);
+                        Cnf_content = cu.getString(1);
+                        Cnf_regdate = cu.getString(3);
+                        Cnf_attendants = cu.getString(5);
+                        Cnf_location = cu.getString(7);
+                        Cnf_title = cu.getString(6);
+                    }
+                }
+                Intent intent = new Intent(getApplicationContext(), UpdateActivity.class);
+
+                //수정 화면으로 리스트뷰 값 전달
+                intent.putExtra("id", idx);
+                intent.putExtra("content", Cnf_content);
+                intent.putExtra("regdate", Cnf_regdate);
+                intent.putExtra("attendants", Cnf_attendants);
+                intent.putExtra("location", Cnf_location);
+                intent.putExtra("title", Cnf_title);
+
+                startActivity(intent);
+            }
+        });
     }
 
     //리스트 출력
@@ -73,26 +114,25 @@ public class MainActivity extends AppCompatActivity {
         DateBaseHelper helper = new DateBaseHelper(MainActivity.this, "Conference.db", null, 1);
         sqliteDatabase = helper.getReadableDatabase();
 
-        //리스트뷰에 목록 채워주는 도구인 adapter준비
+        //리스트뷰에 목록 채워주는 도구 준비
         ListViewAdapter adapter = new ListViewAdapter();
 
         //Cursor라는 그릇에 목록을 담아주기
-        cu = sqliteDatabase.rawQuery("SELECT Cnf_title, Cnf_regdate, Cnf_attendants FROM TB_CONFERENCE",null);
+        cu = sqliteDatabase.rawQuery("SELECT _id, Cnf_title, Cnf_regdate FROM TB_CONFERENCE",null);
 
-        int count = cu.getCount();
-        if (count > 0) {
+        if (cu.getCount() > 0) {
             //목록의 개수만큼 순회하여 adapter에 있는 list배열에 add
             while(cu.moveToNext()){
-                //num 행은 가장 첫번째에 있으니 0번이 되고, name은 1번
-                adapter.addItemToList(cu.getString(0),cu.getString(1),cu.getString(2));
+                adapter.addItemToList(cu.getInt(0), cu.getString(1),cu.getString(2));
             }
         }
         else{
-            adapter.addItemToList("","조회된 리스트가 없습니다.","");
+            adapter.addItemToList(0,"조회된 리스트가 없습니다.","");
         }
-        //리스트 표출\
+        //리스트 표출
         conferenceListView.setAdapter(adapter);
     }
+
     //뒤로가기
     public void onBackPressed() {
         backKeyClickHandler.onBackPressed();
